@@ -1,0 +1,22 @@
+{
+  "name": "frodo-url-shortener",
+  "version": "1.0.0",
+  "description": "Frodo, the URL shortener, is my attempt to implement an URL shortener microservice.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "url-shortener",
+    "murmurhash3"
+  ],
+  "author": "sigfried",
+  "license": "MIT",
+  "devDependencies": {
+    "jest": "^26.1.0"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "murmurhash3": "^0.4.3"
+  }
+}
