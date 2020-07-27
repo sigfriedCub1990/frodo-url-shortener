@@ -16,10 +16,16 @@
   "author": "sigfried",
   "license": "MIT",
   "devDependencies": {
+    "eslint": "^7.5.0",
+    "eslint-config-prettier": "^6.11.0",
+    "husky": "^4.2.5",
     "jest": "^26.1.0",
-    "nodemon": "^2.0.4"
+    "nodemon": "^2.0.4",
+    "prettier": "^2.0.5",
+    "pretty-quick": "^2.0.1"
   },
   "dependencies": {
+    "@hapi/joi": "^17.1.1",
     "express": "^4.17.1",
     "murmurhash3": "^0.4.3"
   }
