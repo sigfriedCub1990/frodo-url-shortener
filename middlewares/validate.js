@@ -1,7 +1,9 @@
 const Joi = require('@hapi/joi');
 
+const PROTOCOL_REGEX = /^[https://|http://]/;
+
 const schema = Joi.object({
-  url: Joi.string().uri(),
+  url: Joi.string().uri().pattern(PROTOCOL_REGEX, { name: 'protocols' }),
 });
 
 const validate = (req, res, next) => {
