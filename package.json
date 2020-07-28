@@ -4,8 +4,8 @@
   "description": "Frodo, the URL shortener, is my attempt to implement an URL shortener microservice.",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "DOMAIN=localhost:3000 nodemon server.js",
+    "start": "DOMAIN=localhost:3000 node server.js",
+    "dev": "DOMAIN=localhost:3000 db=127.0.0.1 nodemon server.js",
     "test": "jest",
     "test:watch": "jest --watch"
   },
@@ -26,10 +26,7 @@
     "prettier": "^2.0.5",
     "pretty-quick": "^2.0.1"
   },
-  "keywords": [
-    "url-shortener",
-    "murmurhash3"
-  ],
+  "keywords": ["url-shortener", "murmurhash3"],
   "author": "sigfried",
   "license": "MIT"
 }

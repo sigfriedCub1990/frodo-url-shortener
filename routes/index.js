@@ -7,7 +7,7 @@ const { getAsync, setAsync } = require('../db');
 const validate = require('../middlewares/validate');
 const lookup = require('../utils/lookup');
 
-const DOMAIN = process.env.DOMAIN || 'https://frodo.sigfried.xyz/';
+const DOMAIN = process.env.DOMAIN || 'https://frodo.sigfried.xyz';
 
 app.post('/', validate, async (req, res, next) => {
   try {
