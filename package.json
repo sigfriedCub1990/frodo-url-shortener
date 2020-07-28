@@ -12,6 +12,8 @@
   "dependencies": {
     "@hapi/joi": "^17.1.1",
     "express": "^4.17.1",
+    "express-rate-limit": "^5.1.3",
+    "helmet": "^3.23.3",
     "murmurhash3": "^0.4.3",
     "redis": "^3.0.2"
   },
@@ -24,7 +26,10 @@
     "prettier": "^2.0.5",
     "pretty-quick": "^2.0.1"
   },
-  "keywords": ["url-shortener", "murmurhash3"],
+  "keywords": [
+    "url-shortener",
+    "murmurhash3"
+  ],
   "author": "sigfried",
   "license": "MIT"
 }
