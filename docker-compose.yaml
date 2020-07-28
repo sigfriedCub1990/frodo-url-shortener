@@ -1,12 +1,23 @@
-version: "3.0"
+version: "3.8"
 
 services:
-  db:
+  redis:
+    container_name: gandalf
     image: redis:latest
     ports:
       - 6379:6379
-  api:
+  url-shortener:
+    container_name: frodo
     build:
       context: .
+    volumes:
+      - .:/app
+      - /app/node_modules
+    ports:
+      - 3000:3000
+    links:
+      - redis
     depends_on:
-      - db
+      - redis
+    environment:
+      - db=redis
