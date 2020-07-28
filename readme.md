@@ -4,6 +4,7 @@
 
 1. [Motivation](#motivation)
 2. [Installation](#installation)
+3. [Usage](#usage)
 
 ## Motivation
 
@@ -21,4 +22,17 @@ around a little with `redis` and `Docker`. Because I had the time to do it, but 
     docker-compose build
     docker-compose up -d redis
     npm run dev
+```
+
+## Usage
+
+```sh
+    # http is [httpie](https://httpie.org/)
+    http POST :3000/ url='https://google.com'
+    # This should return the next `JSON`
+    ``
+    { "url": "localhost:3000/c19fcdc5" }
+    ``
+    # Next step is to just put the returned URL in your browser
+    # and... VOILA!
 ```
