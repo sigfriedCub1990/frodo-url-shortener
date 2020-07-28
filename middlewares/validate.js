@@ -1,4 +1,5 @@
 const Joi = require('@hapi/joi');
+const CustomError = require('../utils/error');
 
 const PROTOCOL_REGEX = /^[https://|http://]/;
 
@@ -12,7 +13,7 @@ const validate = (req, res, next) => {
     next();
   } else {
     const message = error.details[0].message;
-    throw new Error(message);
+    throw new CustomError(message, 400);
   }
 };
 
