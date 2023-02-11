@@ -1,6 +1,9 @@
+import dotenv from 'dotenv';
 import express, { Request, Response } from 'express';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
+
+dotenv.config();
 
 // Routes
 import indexRoute from './routes';

@@ -1,6 +1,11 @@
 import { createClient } from 'redis';
 
-const redistHost = process.env.db ?? 'redis://localhost:6379';
+// TODO: Abstract configuration
+const redistHost = process.env.DB_HOST
+  ? `redis://${process.env.DB_HOST}:6379`
+  : 'redis://localhost:6379';
+
+console.log(`Connectiong to: ${redistHost}`);
 const client = createClient({
   url: redistHost,
 });
