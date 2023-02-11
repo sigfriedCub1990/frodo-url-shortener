@@ -4,7 +4,7 @@
   "description": "Frodo, the URL shortener.",
   "main": "index.js",
   "scripts": {
-    "start": "concurrently npm:start-server npm:build",
+    "start": "concurrently npm:build npm:start-server ",
     "build": "npx tsc",
     "start-server": "node dist/server.js",
     "dev": "concurrently npm:watch*",
