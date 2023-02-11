@@ -1,17 +1,11 @@
-FROM      node:lts
-LABEL     maintainer="sigfried <@sigfriedcub1990>"
-
-ENV PORT 3000
+FROM node:lts
 
 WORKDIR /app
 
-COPY package.json /app/package.json
-COPY package-lock.json /app/package-lock.json
-COPY . /app
+COPY ["package.json", "package-lock.json", "tsconfig.json" , "./"] 
 
-RUN npm ci
+RUN npm install
 
-EXPOSE 3000
+COPY . .
 
-CMD ["npm", "start"]
-
+RUN npx tsc
