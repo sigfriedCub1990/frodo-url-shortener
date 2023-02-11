@@ -1,5 +1,4 @@
 import { Request, Response } from 'express';
-// @ts-ignore
 import mmh3 from 'murmurhash3';
 
 import lookup from '../utils/lookup';
