@@ -4,6 +4,7 @@ import rateLimit from 'express-rate-limit';
 
 // Routes
 import indexRoute from './routes';
+
 import CustomError from './utils/error';
 
 const app = express();
@@ -23,11 +24,11 @@ app.use(express.json());
 app.use(indexRoute);
 
 app.use((_: Request, res: Response, __: () => void) => {
-  res.status(404).end('Route not found');
+  res.status(404).json({ status: 'error', reason: 'Route not found' });
 });
 
 app.use((err: CustomError, _: Request, res: Response, __: () => void) => {
-  res.status(err.code || 500).end(err.message);
+  res.status(err.code || 500).json({ status: 'error', reason: err.message });
 });
 
 export default app;

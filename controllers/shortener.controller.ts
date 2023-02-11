@@ -26,7 +26,7 @@ const ShortenerController = {
           await client.set(urlHash, url);
         }
 
-        res.json({ url: `${DOMAIN}/${urlHash}` });
+        res.json({ status: 'success', url: `${DOMAIN}/${urlHash}` });
       }
     } catch (error) {
       if (error instanceof CustomError) {
@@ -43,7 +43,7 @@ const ShortenerController = {
       if (maybeUrl) {
         res.redirect(maybeUrl);
       } else {
-        res.json({ text: 'URL not found' });
+        res.json({ status: 'error', reason: 'URL not found' });
       }
     } catch (error) {
       if (error instanceof CustomError) {
