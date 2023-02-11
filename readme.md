@@ -1,16 +1,12 @@
-# Frodo!, the URL shortener
-
-## Index
-
-1. [Motivation](#motivation)
-2. [Installation](#installation)
-3. [Usage](#usage)
+# Frodo, the URL shortener
 
 ## Motivation
 
-To have fun building a simple `URL shortener` using a non-cryptographic hash
-function from the [MurmurHash family](https://github.com/aappleby/smhasher). To play
-around a little with `redis` and `Docker`. Because I had the time to do it, but must important, because I chose to.
+- To have fun building a simple `URL shortener` using a non-cryptographic hash
+  function from the [MurmurHash family](https://github.com/aappleby/smhasher). I chose
+  Murmurhash based on [this answer](https://softwareengineering.stackexchange.com/questions/49550/which-hashing-algorithm-is-best-for-uniqueness-and-speed/145633#145633).
+- To learn how to setup a simple environment using [Docker](https://docs.docker.com/get-docker/),
+  [Redis](https://redis.io/) and [Node.js](https://nodejs.org/en/).
 
 ## Installation
 
@@ -18,7 +14,7 @@ around a little with `redis` and `Docker`. Because I had the time to do it, but 
     # To run the URL shortener run the following `two` commands
     docker-compose build
     docker-compose up -d
-    # You can still use `redis` and just run the `Gandalf` container :)
+    # You can still use `redis` and run the `Gandalf` container :)
     docker-compose build
     docker-compose up -d redis
     npm run dev
@@ -26,13 +22,16 @@ around a little with `redis` and `Docker`. Because I had the time to do it, but 
 
 ## Usage
 
-```sh
-    # http is [httpie](https://httpie.org/)
-    http POST :3000/ url='https://google.com'
-    # This should return the next `JSON`
-    ``
+````sh
+    curl --data '{"url": "https://sigfried.xyz"}' --header 'Content-Type: application/json' http://localhost:3000/api/v1/shorten
+    # Response will be a JSON with an URL
+    ```json
     { "url": "localhost:3000/c19fcdc5" }
-    ``
-    # Next step is to just put the returned URL in your browser
-    # and... VOILA!
-```
+    ```
+    # Next step is to put the returned URL in your browser
+    # and you'll be redirected to the original URL, i.e. https://sigfried.xyz.
+````
+
+## Example API
+
+- [Bit.ly](https://dev.bitly.com/api-reference)

@@ -22,6 +22,7 @@ describe('Validate middleware tests', () => {
       url: 'https://sigfried.xyz',
     };
 
+    // @ts-ignore
     validate(req, res, next);
 
     expect(next).toHaveBeenCalledTimes(1);
@@ -30,6 +31,7 @@ describe('Validate middleware tests', () => {
   test('Should return an error if URI is invalid', () => {
     const { req, res, next } = mockExpressObjects();
 
+    // @ts-ignore
     expect(() => validate(req, res, next)).toThrow();
   });
 });
