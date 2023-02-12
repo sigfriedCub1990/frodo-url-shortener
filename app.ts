@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import express, { Request, Response } from 'express';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
+import cors from 'cors';
 
 dotenv.config();
 
@@ -23,6 +24,11 @@ app.use(helmet());
 app.use(limiter);
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
+app.use(
+  cors({
+    origin: 'http:/localhost:3001',
+  }),
+);
 
 app.use(indexRoute);
 
