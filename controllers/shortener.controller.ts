@@ -4,6 +4,7 @@ import mmh3 from 'murmurhash3';
 import lookup from '../utils/lookup';
 import client from '../db';
 import CustomError from '../utils/error';
+import logger from '../logger';
 
 const DOMAIN = process.env.DOMAIN || 'https://frodo.sigfried.xyz';
 
@@ -28,23 +29,7 @@ const ShortenerController = {
         res.json({ status: 'success', url: `${DOMAIN}/${urlHash}` });
       }
     } catch (error) {
-      if (error instanceof CustomError) {
-        next(error);
-      } else if (error instanceof Error) {
-        throw new Error(error.message);
-      }
-    }
-  },
-  getShortenedUrl: async (req: Request, res: Response, next: Next) => {
-    try {
-      const id = req.params.id;
-      const maybeUrl = await client.get(id);
-      if (maybeUrl) {
-        res.redirect(maybeUrl);
-      } else {
-        res.json({ status: 'error', reason: 'URL not found' });
-      }
-    } catch (error) {
+      logger.error(error);
       if (error instanceof CustomError) {
         next(error);
       } else if (error instanceof Error) {

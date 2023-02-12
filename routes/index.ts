@@ -1,12 +1,4 @@
-import express from 'express';
+import indexRouter from './index.route';
+import shortenerRouter from './shortener.route';
 
-import validate from '../middlewares/validate';
-import ShortenerController from '../controllers';
-
-const router = express.Router();
-
-router.post('/api/v1/shorten', validate, ShortenerController.shortenUrl);
-
-router.get('/api/v1/shorten/:id', ShortenerController.getShortenedUrl);
-
-export default router;
+export { indexRouter, shortenerRouter };

@@ -8,7 +8,7 @@ import morgan from 'morgan';
 dotenv.config();
 
 // Routes
-import indexRoute from './routes';
+import * as routes from './routes';
 
 import CustomError from './utils/error';
 
@@ -30,9 +30,10 @@ app.use(
     origin: 'http:/localhost:3001',
   }),
 );
-app.use(morgan('dev'));
+app.use(morgan('tiny'));
 
-app.use(indexRoute);
+app.use(routes.shortenerRouter);
+app.use(routes.indexRouter);
 
 app.use((_: Request, res: Response, __: () => void) => {
   res.status(404).json({ status: 'error', reason: 'Route not found' });

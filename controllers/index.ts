@@ -1,1 +1,4 @@
-export { default } from './shortener.controller';
+import ShortenerController from './shortener.controller';
+import IndexController from './index.controller';
+
+export { ShortenerController, IndexController };
