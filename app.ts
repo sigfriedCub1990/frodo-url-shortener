@@ -3,6 +3,7 @@ import express, { Request, Response } from 'express';
 import helmet from 'helmet';
 import rateLimit from 'express-rate-limit';
 import cors from 'cors';
+import morgan from 'morgan';
 
 dotenv.config();
 
@@ -29,6 +30,7 @@ app.use(
     origin: 'http:/localhost:3001',
   }),
 );
+app.use(morgan('dev'));
 
 app.use(indexRoute);
 
