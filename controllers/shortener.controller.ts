@@ -1,9 +1,8 @@
 import { Request, Response } from 'express';
 import mmh3 from 'murmurhash3';
 
-import lookup from '../utils/lookup';
+import { lookup, CustomError } from '../utils/';
 import client from '../db';
-import CustomError from '../utils/error';
 import logger from '../logger';
 
 const DOMAIN = process.env.DOMAIN || 'https://frodo.sigfried.xyz';
