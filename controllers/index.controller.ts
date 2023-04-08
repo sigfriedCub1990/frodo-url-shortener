@@ -1,8 +1,8 @@
 import { Request, Response } from 'express';
 
-import client from '../db';
 import logger from '../logger';
 import CustomError from '../utils/error';
+import Shortener from '../lib/shortener';
 
 type Next = (err: Error | CustomError) => void;
 
@@ -10,11 +10,11 @@ const IndexController = {
   getShortenedUrl: async (req: Request, res: Response, next: Next) => {
     try {
       const id = req.params.id;
-      const maybeUrl = await client.get(id);
-      if (maybeUrl) {
-        res.redirect(maybeUrl);
+      const result = await Shortener.urlByHash(id);
+      if (typeof result === 'string') {
+        res.redirect(301, result);
       } else {
-        res.json({ status: 'error', reason: 'URL not found' });
+        res.status(404).json(result);
       }
     } catch (error) {
       logger.error(error);
