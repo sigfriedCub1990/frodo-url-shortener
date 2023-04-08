@@ -14,7 +14,7 @@ const validate = (req: Request, _: Response, next: () => void) => {
     next();
   } else {
     const message = error.details[0].message;
-    throw new CustomError(message, 400);
+    throw new CustomError(message, 422);
   }
 };
 
