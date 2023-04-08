@@ -1,11 +1,8 @@
 import { Request, Response } from 'express';
-import mmh3 from 'murmurhash3';
 
 import { lookup, CustomError } from '../utils/';
-import client from '../db';
 import logger from '../logger';
-
-const DOMAIN = process.env.DOMAIN || 'https://frodo.sigfried.xyz';
+import Shortener from '../lib/shortener';
 
 type Next = (err: Error | CustomError) => void;
 
@@ -18,14 +15,8 @@ const ShortenerController = {
       const lookupRes = await lookup(urlObject.host);
 
       if (lookupRes) {
-        const urlHash = mmh3.murmur32HexSync(url);
-
-        const maybeKeyValue = await client.get(urlHash);
-        if (!maybeKeyValue) {
-          await client.set(urlHash, url);
-        }
-
-        res.json({ status: 'success', url: `${DOMAIN}/${urlHash}` });
+        const shortenerResponse = await Shortener.hashUrl(url);
+        res.json(shortenerResponse);
       }
     } catch (error) {
       logger.error(error);
