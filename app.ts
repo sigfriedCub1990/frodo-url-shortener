@@ -35,12 +35,14 @@ app.use(morgan('tiny'));
 app.use(routes.shortenerRouter);
 app.use(routes.indexRouter);
 
-app.use((_: Request, res: Response, __: () => void) => {
+// eslint-disable-next-line
+app.use((_req: Request, res: Response, _next: () => void) => {
   res.status(404).json({ status: 'error', reason: 'Route not found' });
 });
 
-app.use((err: CustomError, _: Request, res: Response, __: () => void) => {
-  res.status(err.code || 500).json({ status: 'error', reason: err.message });
+// eslint-disable-next-line
+app.use((err: CustomError, _req: Request, res: Response, _next: () => void) => {
+  res.status(err.code || 500).json({ status: 'error', message: err.message });
 });
 
 export default app;

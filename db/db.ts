@@ -5,7 +5,7 @@ const redistHost = process.env.DB_HOST
   ? `redis://${process.env.DB_HOST}:6379`
   : 'redis://localhost:6379';
 
-console.log(`Connectiong to: ${redistHost}`);
+console.log(`Connecting to: ${redistHost}`);
 const client = createClient({
   url: redistHost,
 });
